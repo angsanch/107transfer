@@ -7,6 +7,7 @@
 ##
 
 import sys
+import parser
 
 def print_usage():
     print("USAGE")
@@ -21,7 +22,7 @@ def main():
             print_usage()
         else:
             raise Exception("Unrecognized argument")
-    elif len(sys.argv) == 3:
+    elif len(sys.argv) % 2 == 1 and len(sys.argv) > 2:
         pass
     else:
         raise Exception("Invalid amount of parameters")
