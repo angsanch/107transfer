@@ -36,7 +36,7 @@ def loop(data, x):
 def transfer():
     data = parser.parse()
     result = 0
-    for i in range(0, 1000):
+    for i in range(0, 1001):
         print(f"{i / 1000:.3f} -> {loop(data, i / 1000):.5f}")
 
 def main():
