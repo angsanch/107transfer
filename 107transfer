@@ -16,6 +16,29 @@ def print_usage():
     print("\tnum\tpolynomial numerator defined by its coefficients")
     print("\tden\tpolinomial denominator defined by its coefficients")
 
+def polynomial(coefficients, x):
+    nterm = 0
+    num_coefficients = len(coefficients) - 1
+    for i in range(len(coefficients)):
+        nterm = nterm + (coefficients[i] * (x ** num_coefficients))
+        num_coefficients -= 1
+    return nterm
+
+def loop(data, x):
+    nums = 1
+    dems = 1
+    for i in range(len(data["nums"])):
+        nums = nums * polynomial(data["nums"][i], x)
+    for i in range(len(data["dems"])):
+        dems = dems * polynomial(data["dems"][i], x)
+    return nums / dems
+
+def transfer():
+    data = parser.parse()
+    result = 0
+    for i in range(0, 1000):
+        print(f"{i / 1000:.3f} -> {loop(data, i / 1000):.5f}")
+
 def main():
     if len(sys.argv) == 2:
         if sys.argv[1] == "-h":
@@ -23,13 +46,14 @@ def main():
         else:
             raise Exception("Unrecognized argument")
     elif len(sys.argv) % 2 == 1 and len(sys.argv) > 2:
-        pass
+        transfer()
     else:
         raise Exception("Invalid amount of parameters")
 
 if __name__ == "__main__":
+    main()
     try:
-        main()
+        pass
     except Exception as e:
         print(e, file=sys.stderr)
         exit(84)

@@ -8,7 +8,8 @@
 import sys
 
 def parse_param(par:str) -> list:
-    return [float(i) for i in par.split("*")]
+    (parts := par.split("*")).reverse()
+    return [float(i) for i in parts]
 
 def parse() -> dict:
     params = sys.argv[1:]
